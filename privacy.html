@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy — ClearPaper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #e8e6e1;
+            background-image:
+                radial-gradient(ellipse 120% 90% at 50% -20%, rgba(45, 106, 79, 0.08), transparent 50%),
+                linear-gradient(180deg, #f0ede6 0%, #e8e6e1 45%, #e2dfd6 100%);
+            color: #4a5058;
+            line-height: 1.72;
+            min-height: 100vh;
+            padding: 0;
+            position: relative;
+        }
+
+        .paper-texture {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+
+        .accent-line {
+            height: 4px;
+            background: linear-gradient(90deg, #1b4332 0%, #40916c 35%, #74c69d 70%, #95d5b2 100%);
+            position: relative;
+            z-index: 2;
+        }
+
+        .wrap {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 32px 22px 56px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sheet {
+            background: #faf9f6;
+            border: 1px solid rgba(27, 67, 50, 0.12);
+            border-radius: 20px;
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.9) inset,
+                0 20px 44px rgba(27, 67, 50, 0.07);
+            padding: 36px 32px 32px;
+            margin-bottom: 24px;
+        }
+
+        .doc-header {
+            border-bottom: 2px solid rgba(27, 67, 50, 0.12);
+            padding-bottom: 22px;
+            margin-bottom: 26px;
+        }
+
+        .doc-header .label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #40916c;
+            margin-bottom: 10px;
+        }
+
+        .doc-header h1 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: #1b4332;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+
+        .doc-header .meta {
+            font-size: 0.88rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        dl.privacy-dl {
+            margin: 0;
+        }
+
+        dl.privacy-dl dt {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1b4332;
+            margin-top: 22px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(27, 67, 50, 0.1);
+        }
+
+        dl.privacy-dl dt:first-of-type {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        dl.privacy-dl dd {
+            margin: 10px 0 0;
+            font-size: 0.96rem;
+            color: #4a5058;
+        }
+
+        dl.privacy-dl dd strong {
+            color: #1b4332;
+            font-weight: 700;
+        }
+
+        .stamp {
+            margin-top: 28px;
+            padding: 18px 20px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(216, 243, 220, 0.55) 0%, rgba(183, 228, 199, 0.28) 100%);
+            border: 1px solid rgba(64, 145, 108, 0.24);
+            font-size: 0.94rem;
+            color: #2d4a3e;
+            font-weight: 600;
+        }
+
+        .stamp span {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #1b4332;
+            margin-bottom: 6px;
+        }
+
+        .back {
+            text-align: center;
+        }
+
+        .back a {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #1b4332;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            border: 1px solid rgba(27, 67, 50, 0.18);
+            background: #faf9f6;
+            box-shadow: 0 6px 18px rgba(27, 67, 50, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .back a:hover {
+            transform: translateY(-1px);
+            border-color: rgba(64, 145, 108, 0.35);
+            box-shadow: 0 10px 24px rgba(27, 67, 50, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            .wrap { padding: 22px 16px 48px; }
+            .sheet { padding: 28px 22px 26px; }
+            .doc-header h1 { font-size: 1.45rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="accent-line" aria-hidden="true"></div>
+    <div class="paper-texture" aria-hidden="true"></div>
+
+    <div class="wrap">
+        <article class="sheet">
+            <header class="doc-header">
+                <p class="label">ClearPaper</p>
+                <h1>Privacy notice</h1>
+                <p class="meta">Effective: April 2026 · For the App Store product only</p>
+            </header>
+
+            <dl class="privacy-dl">
+                <dt>1. Plain-English purpose</dt>
+                <dd>This notice explains how privacy is handled for <strong>ClearPaper</strong> as described on Apple’s App Store. It is not legal advice. If anything here disagrees with the live <strong>App Privacy</strong> label on the store listing, the label takes precedence.</dd>
+
+                <dt>2. Data collection (App Store disclosure)</dt>
+                <dd>The developer has indicated that <strong>this app does not collect data</strong> in the categories Apple shows under “Data Not Collected” for the current listing. Features, OS versions, or future updates can change what Apple asks developers to declare—recheck the product page after updates.</dd>
+
+                <dt>3. Documents and on-device use</dt>
+                <dd>PDFs, images, scans, notes, highlights, and signatures you add are <strong>your content</strong>. They are meant to stay under your control on the device and in locations you choose (for example iCloud Drive or local Files), consistent with how the app is presented on the store.</dd>
+
+                <dt>4. Apple’s platform</dt>
+                <dd>Downloading, updating, purchasing, and using iOS, iPadOS, or related Apple services involve processing by <strong>Apple</strong>. That is covered by Apple’s own policies and system settings, not by this notice.</dd>
+
+                <dt>5. Age rating</dt>
+                <dd>The app is rated <strong>4+</strong>. Guardians can use Screen Time, Family Sharing, and App Store parental controls to manage access.</dd>
+
+                <dt>6. Revisions</dt>
+                <dd>This text may be updated to stay aligned with the app and store disclosure. The <strong>Effective</strong> date above will change when the notice is edited.</dd>
+            </dl>
+
+            <div class="stamp">
+                <span>Summary</span>
+                No third-party websites, contact forms, or personal identifiers appear in this notice. For the latest privacy claims about the app, open <strong>ClearPaper</strong> on the App Store and review the App Privacy section there.
+            </div>
+        </article>
+
+        <nav class="back" aria-label="Site">
+            <a href="index.html">← ClearPaper overview</a>
+        </nav>
+    </div>
+</body>
+
+</html>
